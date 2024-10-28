@@ -1,0 +1,4 @@
+*.plist
+.DS_store
+*.log
+
