@@ -7,12 +7,19 @@
 
 import SwiftUI
 import SwiftData
+import Firebase
 
 @main
 struct WarehouseStockTrackerApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            WarehouseProduct.self,
+            Supplier.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +32,7 @@ struct WarehouseStockTrackerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomePage()
         }
         .modelContainer(sharedModelContainer)
     }
