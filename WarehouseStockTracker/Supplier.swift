@@ -9,20 +9,33 @@ import Foundation
 import SwiftData
 
 @Model
-final class Supplier {
+final class Supplier: Encodable {
+    // updating model to conform to encodable via UUID()
+    var id: UUID
     var name: String
     var products = [WarehouseProduct]()
     
-    init(name: String) {
+    init(id: UUID = UUID(), name: String) {
+        self.id = id
         self.name = name
     }
     
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name
+    }
+    
     static let sampleData: Set = [
-        Supplier(name: "DetPak"),
-        Supplier(name: "PacTrading"),
-        Supplier(name: "GenFac Plastics"),
-        Supplier(name: "Anchor Packaging"),
-        Supplier(name: "LongImport"),
-        Supplier(name: "Bio Plastics"),
+        Supplier(id: UUID(), name: "DetPak"),
+        Supplier(id: UUID(), name: "PacTrading"),
+        Supplier(id: UUID(), name: "GenFac Plastics"),
+        Supplier(id: UUID(), name: "Anchor Packaging"),
+        Supplier(id: UUID(), name: "LongImport"),
+        Supplier(id: UUID(), name: "Bio Plastics"),
     ]
 }

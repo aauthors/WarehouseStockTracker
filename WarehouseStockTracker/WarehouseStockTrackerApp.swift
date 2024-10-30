@@ -8,12 +8,15 @@
 import SwiftUI
 import SwiftData
 import Firebase
+import FirebaseFirestore
 
 @main
 struct WarehouseStockTrackerApp: App {
     
     init() {
         FirebaseApp.configure()
+        // call migration func for SwiftData -> Firestore
+        
     }
     
     var sharedModelContainer: ModelContainer = {
@@ -36,4 +39,5 @@ struct WarehouseStockTrackerApp: App {
         }
         .modelContainer(sharedModelContainer)
     }
+    
 }
