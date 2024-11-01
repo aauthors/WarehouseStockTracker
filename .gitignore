@@ -2,3 +2,5 @@
 .DS_store
 *.log
 
+# dont add user data
+WarehouseStockTracker.xcodeproj/xcuserdata/alex.xcuserdatad/xcdebugger/
