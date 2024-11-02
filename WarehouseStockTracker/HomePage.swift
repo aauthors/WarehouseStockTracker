@@ -12,38 +12,73 @@ struct HomePage: View {
         NavigationStack {
             VStack {
                 // Company name title
-                Text("Hospitality Disposables")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 50)
-                    
+                ZStack {
+                    Group {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [.blue, .cyan]),
+                                    startPoint: .center,
+                                    endPoint: .top
+                                )
+                            )
+                            .foregroundStyle(.blue)
+                            .opacity(0.3)
+                            .shadow(color: .gray, radius: 10, x: 0, y: 8)
+                        
+                        Text("Hospitality Disposables")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .padding()
+                    }
+                    .padding(.bottom, 80)
+
+                }
+                .padding(.top, 80)
+                .padding(.bottom, 80)
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                .animation(.easeInOut(duration: 1.5), value: 1)
+                
                 // Company image/logo
                 // cube.box person
-                    
-                HStack {
-                    Image(
-                        systemName: "person"
-                    ) // Placeholder image, you can replace with your logo
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.blue)
-                    .padding(.bottom, 50)
-                    Image(
-                        systemName: "cube.box"
-                    ) // Placeholder image, you can replace with your logo
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.blue)
-                    .padding(.bottom, 50)
-                    Image(
-                        systemName: "person"
-                    ) // Placeholder image, you can replace with your logo
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.blue)
-                    .padding(.bottom, 50)
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.blue, Color(white: 0.5)]),
+                                startPoint: .center,
+                                endPoint: .bottom
+                            )
+                        )
+                        .aspectRatio(contentMode: .fit)
+                        .opacity(0.2)
+                        
+                    HStack {
+                        Image(
+                            systemName: "person"
+                        ) // Placeholder image, you can replace with your logo
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(Color(white: 0.288))
+                        .padding(.bottom, 50)
+                        Image(
+                            systemName: "cube.box"
+                        ) // Placeholder image, you can replace with your logo
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(Color(white: 0.288))
+                        .padding(.bottom, 50)
+                        Image(
+                            systemName: "person"
+                        ) // Placeholder image, you can replace with your logo
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundStyle(Color(white: 0.288))
+                        .padding(.bottom, 50)
+                    }
                 }
-                    
+                
                 // Button to navigate to the login page
                 NavigationLink(destination: SignInView()) {
                     Text("Go to Login page")
@@ -51,10 +86,17 @@ struct HomePage: View {
                         .foregroundColor(.white)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.blue, .cyan]),
+                                startPoint: .center,
+                                endPoint: .top
+                            )
+                        )
                         .cornerRadius(10)
                 }
                 .padding(.horizontal, 40)  // Adjust padding for desired button size
+                
             }
             .padding()
         }
