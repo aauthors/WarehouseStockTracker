@@ -96,6 +96,7 @@ struct HomePage: View {
                         .cornerRadius(10)
                 }
                 .padding(.horizontal, 40)  // Adjust padding for desired button size
+                .buttonStyle(.plain)
                 
             }
             .padding()

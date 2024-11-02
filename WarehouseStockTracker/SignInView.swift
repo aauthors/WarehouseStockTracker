@@ -21,14 +21,23 @@ struct SignInView: View {
             
             VStack {
                 // Sign-in Header
-                Text("Sign In")
-                    .font(.largeTitle)
-                    .padding(.bottom, 40)
-                    
+                HStack {
+                    Text("Sign In")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .shadow(color: .gray, radius: 10, x: 0, y: 8)
+                        .frame(alignment: .topLeading)
+                        .padding(.bottom, 20)
+                        .padding(.leading, 20)
+                    Spacer()
+                }
+                
                 // Email TextField
                 TextField("Email", text: $email)
                     .keyboardType(.emailAddress) // Keyboard with "@" symbol
-                    .autocapitalization(.none)  // No auto capitalisation for email
+                    .autocapitalization(
+                        .none
+                    )  // No auto capitalisation for email
                     .padding()
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(10)
@@ -49,19 +58,27 @@ struct SignInView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
                             .frame(width: 150, height: 40)
-                            .foregroundStyle(.blue)
-                        
+                            .foregroundStyle(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [.blue, .cyan]),
+                                    startPoint: .center,
+                                    endPoint: .top
+                                )
+                            )
+                            .shadow(color: .gray, radius: 10, x: 0, y: 8)
+
                         Button(action: signInUser) {
                             Text("Sign In")
                                 .foregroundStyle(.white)
                         }
                         .navigationDestination(isPresented: $isLoggedIn) {
                             MainPage()
+                                .animation(.easeInOut(duration: 0.8), value: isLoggedIn)
                         }
 
                     }
                 }
-                
+
                 // Error message display
                 if showError {
                     Text(errorMessage)
