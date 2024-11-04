@@ -75,6 +75,7 @@ struct SignInView: View {
                             MainPage()
                                 .animation(.easeInOut(duration: 0.8), value: isLoggedIn)
                         }
+                        .buttonStyle(.plain)
 
                     }
                 }

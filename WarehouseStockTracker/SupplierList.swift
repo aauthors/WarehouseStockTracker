@@ -36,11 +36,25 @@ struct SupplierList: View {
                         NavigationLink {
                             SupplierDetail(supplier: supplier)
                         } label: {
-                            Text(supplier.name)
+                            HStack {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [.blue, .green]), startPoint: .leading, endPoint: .trailing)
+                                        )
+                                        .opacity(0.2)
+                                    
+                                    Text(supplier.name)
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                }
+                            }
                         }
                     }
                     .onDelete(perform: deleteItems)
                 }
+                .buttonStyle(.plain)
+                .listStyle(PlainListStyle())
                 .navigationTitle("Suppliers")
             } else {
                 ContentUnavailableView {

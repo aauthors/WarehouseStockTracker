@@ -40,15 +40,36 @@ struct ProductList: View {
                 if orderByQty {
                     List {
                         ForEach (productsByQuantity) { product in
-                            NavigationLink {
-                                ProductDetail(product: product)
-                            } label: {
+                            NavigationLink(destination: ProductDetail(product: product)) {
                                 HStack {
-                                    Text(product.code)
-                                    Spacer()
-                                    Text(String(product.qty))
+                                    Group {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(
+                                                    LinearGradient(
+                                                        gradient: Gradient(colors: [.blue, .green]),
+                                                        startPoint: .leading,
+                                                        endPoint: .trailing
+                                                    )
+                                                )
+                                                .opacity(0.2)
+                                            HStack {
+                                                Spacer()
+                                                Text(product.code)
+                                                    .font(.headline)
+                                                Spacer()
+                                                Text("|")
+                                                Spacer()
+                                                Text("\(product.qty)")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.bold)
+                                                Spacer()
+                                            }
+                                        }
+                                    }
                                 }
                             }
+                            .buttonStyle(.plain)
                         }
                         .onDelete(perform: deleteItems)
                     }
@@ -56,18 +77,40 @@ struct ProductList: View {
                 } else {
                     List {
                         ForEach (products) { product in
-                            NavigationLink {
-                                ProductDetail(product: product)
-                            } label: {
+                            NavigationLink(destination: ProductDetail(product: product)) {
                                 HStack {
-                                    Text(product.code)
-                                    Spacer()
-                                    Text(String(product.qty))
+                                    Group {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .fill(
+                                                    LinearGradient(
+                                                        gradient: Gradient(colors: [.blue, .green]),
+                                                        startPoint: .leading,
+                                                        endPoint: .trailing
+                                                    )
+                                                )
+                                                .opacity(0.2)
+                                            HStack {
+                                                Spacer()
+                                                Text(product.code)
+                                                    .font(.headline)
+                                                Spacer()
+                                                Text("|")
+                                                Spacer()
+                                                Text("\(product.qty)")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.bold)
+                                                Spacer()
+                                            }
+                                        }
+                                    }
                                 }
                             }
+                            .buttonStyle(.plain)
                         }
                         .onDelete(perform: deleteItems)
                     }
+                    .listStyle(PlainListStyle())
                     .navigationTitle("Products by Code")
                 }
             } else {
@@ -100,11 +143,17 @@ struct ProductList: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 150, height: 40)
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.blue, .cyan]),
+                            startPoint: .center,
+                            endPoint: .top
+                        )
+                    )
                 
                 Toggle("Order by Qty", isOn: $orderByQty)
                     .foregroundStyle(.white)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.plain)
                     .toggleStyle(.button)
             }
             
@@ -116,11 +165,22 @@ struct ProductList: View {
                     .fontWeight(.bold)
                     .padding()
                     .frame(width: 150, height: 40)
-                    .background(.blue)
                     .foregroundStyle(.white)
                     .cornerRadius(10)
             }
-                
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: 150, height: 40)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [.blue, .cyan]),
+                    startPoint: .center,
+                    endPoint: .top
+                )
+            )
+            .cornerRadius(10)
+            .buttonStyle(.plain)
+            
             Spacer()
         }
     }
